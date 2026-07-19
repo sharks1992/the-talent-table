@@ -1,0 +1,204 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    /* The Talent Table — premium front-office light theme.
+       Warm off-white ground, white cards, deep ink-navy text, one pitch-green accent. */
+    --background: 60 4.8% 97.8%;        /* #fafaf9 */
+    --foreground: 222.2 47.4% 11.2%;    /* #0f172a */
+    --card: 0 0% 100%;
+    --card-foreground: 222.2 47.4% 11.2%;
+    --popover: 0 0% 100%;
+    --popover-foreground: 222.2 47.4% 11.2%;
+    --primary: 141.9 71.8% 29.2%;       /* #15803d pitch green */
+    --primary-foreground: 0 0% 98%;
+    --secondary: 220 14.3% 95.9%;
+    --secondary-foreground: 222.2 47.4% 11.2%;
+    --muted: 220 14.3% 95.9%;
+    --muted-foreground: 215.4 16.3% 46.9%;
+    --accent: 141.9 71.8% 29.2%;
+    --accent-foreground: 0 0% 98%;
+    --destructive: 0 72.2% 50.6%;       /* muted red for weaknesses */
+    --destructive-foreground: 0 0% 98%;
+    --border: 220 13% 91%;
+    --input: 220 13% 91%;
+    --ring: 141.9 71.8% 29.2%;
+    --radius: 0.625rem;
+    --sidebar-background: 0 0% 100%;
+    --sidebar-foreground: 222.2 47.4% 11.2%;
+    --sidebar-primary: 141.9 71.8% 29.2%;
+    --sidebar-primary-foreground: 0 0% 98%;
+    --sidebar-accent: 140 40% 96%;
+    --sidebar-accent-foreground: 141.9 71.8% 25%;
+    --sidebar-border: 220 13% 91%;
+    --sidebar-ring: 141.9 71.8% 29.2%;
+
+    /* Chart palette (ported from the original app) */
+    --tt-grid: #e5e5ec;
+    --tt-grid-soft: #efeff4;
+    --tt-tick: #9a9aa8;
+    --tt-ink-soft: #1f1f28;
+    --tt-gold: #ca8a04;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+  html {
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+  }
+  body {
+    @apply bg-background text-foreground font-sans;
+    font-feature-settings: "cv11", "ss01";
+  }
+}
+
+@layer components {
+  /* Big display numerals — the 0–99 scouting ratings */
+  .rating-numeral {
+    font-family: "Saira Condensed", "Inter Variable", sans-serif;
+    font-weight: 700;
+    line-height: 0.9;
+    letter-spacing: 0.01em;
+    font-variant-numeric: tabular-nums;
+  }
+  .display-title {
+    font-family: "Saira Condensed", "Inter Variable", sans-serif;
+    font-weight: 600;
+    letter-spacing: 0.02em;
+  }
+  /* Segmented pill control */
+  .seg {
+    @apply inline-flex flex-wrap items-center gap-1 rounded-lg border border-border bg-white p-1;
+  }
+  .seg button,
+  .seg .seg-item {
+    @apply rounded-md px-2.5 py-1.5 text-[13px] font-semibold text-muted-foreground transition-colors hover:text-foreground;
+  }
+  .seg button.active,
+  .seg .seg-item.active {
+    @apply bg-primary text-primary-foreground shadow-none hover:text-primary-foreground;
+  }
+  /* Player chips (comparison / pdf compare) */
+  .tt-chip {
+    @apply inline-flex items-center gap-2 rounded-full border border-border bg-white py-1 pl-2 pr-1 text-[13px] font-semibold;
+  }
+  /* Raw stat rows */
+  .tt-card {
+    @apply rounded-xl border border-border bg-card shadow-card;
+  }
+}
+
+/* ------------------------------------------------------------------ */
+/*  Dynamic brand mark — tabletop spins like a table-top spinner,      */
+/*  once on load and again on hover. Legs stay planted.                */
+/* ------------------------------------------------------------------ */
+.tt-brandmark .tt-top {
+  transform-box: fill-box;
+  transform-origin: center;
+  animation: tt-tabletop-spin 1.15s cubic-bezier(0.16, 0.65, 0.24, 1) 0.35s 1 both;
+}
+.tt-brandmark:hover .tt-top {
+  animation: tt-tabletop-spin-hover 0.95s cubic-bezier(0.16, 0.65, 0.24, 1) 1 both;
+}
+@keyframes tt-tabletop-spin {
+  from { transform: perspective(620px) rotateY(0deg); }
+  to { transform: perspective(620px) rotateY(360deg); }
+}
+@keyframes tt-tabletop-spin-hover {
+  from { transform: perspective(620px) rotateY(0deg); }
+  to { transform: perspective(620px) rotateY(360deg); }
+}
+@media (prefers-reduced-motion: reduce) {
+  .tt-brandmark .tt-top,
+  .tt-brandmark:hover .tt-top {
+    animation: none;
+  }
+}
+
+/* ------------------------------------------------------------------ */
+/*  User guide key (GuideDialog)                                       */
+/* ------------------------------------------------------------------ */
+.tt-flow {
+  display: flex;
+  flex-direction: column;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+.tt-flow > li {
+  position: relative;
+  display: grid;
+  grid-template-columns: 26px 1fr;
+  gap: 10px;
+  padding: 6px 0;
+}
+.tt-flow > li:not(:last-child)::before {
+  content: "";
+  position: absolute;
+  left: 12px;
+  top: 32px;
+  bottom: -4px;
+  width: 1.5px;
+  background: hsl(var(--primary) / 0.35);
+}
+.tt-flow .n {
+  display: grid;
+  place-items: center;
+  width: 22px;
+  height: 22px;
+  margin-top: 1px;
+  border-radius: 999px;
+  border: 1.5px solid hsl(var(--primary) / 0.7);
+  background: hsl(var(--primary) / 0.1);
+  color: hsl(var(--primary));
+  font-size: 11px;
+  font-weight: 700;
+  font-variant-numeric: tabular-nums;
+}
+
+.tt-map {
+  display: grid;
+  grid-template-columns: minmax(140px, 1fr) 30px 1.5fr;
+}
+.tt-map-spine {
+  position: relative;
+}
+.tt-map-spine > .v {
+  position: absolute;
+  left: 0;
+  top: 16.66%;
+  bottom: 16.66%;
+  width: 1.5px;
+  background: hsl(var(--primary) / 0.4);
+}
+.tt-map-spine > .b {
+  position: absolute;
+  left: 0;
+  right: 7px;
+  height: 1.5px;
+  transform: translateY(-50%);
+  background: hsl(var(--primary) / 0.4);
+}
+.tt-map-spine > .b::after {
+  content: "";
+  position: absolute;
+  right: -7px;
+  top: -3.25px;
+  border-left: 7px solid hsl(var(--primary) / 0.4);
+  border-top: 4px solid transparent;
+  border-bottom: 4px solid transparent;
+}
+@media (max-width: 480px) {
+  .tt-map {
+    grid-template-columns: 1fr;
+  }
+  .tt-map-spine {
+    display: none;
+  }
+}
