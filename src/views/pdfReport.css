@@ -1,0 +1,322 @@
+/* ==================================================================
+   PDF report styles — ported from the original (index.html lines
+   240–305), adapted to Inter Variable + the CSS-monogram brand mark.
+   The report root is a fixed 794 px wide; PdfView scales the preview.
+=================================================================== */
+
+#pdfReport {
+  width: 794px;
+  background: #fff;
+  color: #0f0f14;
+  transform-origin: top left;
+}
+
+.pdfr {
+  font-family: 'Inter Variable', Inter, sans-serif;
+  padding: 10px 34px;
+  width: 794px;
+  box-sizing: border-box;
+}
+.pdfr .pdf-unit {
+  margin-top: 0;
+}
+.pdfr .hd {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-bottom: 2px solid #0f0f14;
+  padding-bottom: 13px;
+}
+.pdfr .hd .lg {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+/* CSS monogram — html2canvas rasterises inline SVG to a black box, so the
+   mark is drawn with plain elements (same reason the original used a PNG). */
+.pdfr .hd .lg .lgmark {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 30px;
+  height: 30px;
+  border-radius: 6px;
+  background: #15803d;
+  color: #fff;
+  font-family: 'Saira Condensed', sans-serif;
+  font-weight: 700;
+  font-size: 15px;
+  letter-spacing: 0.5px;
+}
+.pdfr .hd .lg b {
+  font-family: 'Saira Condensed', sans-serif;
+  font-weight: 700;
+  letter-spacing: 1.4px;
+  font-size: 16px;
+  text-transform: uppercase;
+}
+.pdfr .hd .meta {
+  text-align: right;
+  font-size: 10.5px;
+  color: #6b6b7b;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  font-weight: 700;
+  line-height: 1.5;
+}
+.pdfr .hero {
+  display: flex;
+  gap: 22px;
+  margin-top: 22px;
+}
+/* Photo is a background-image (cover), not <img object-fit> — html2canvas
+   honours background-size/position but renders img object-fit wrong. */
+.pdfr .hero .ph {
+  width: 188px;
+  height: 226px;
+  flex: none;
+  border-radius: 14px;
+  overflow: hidden;
+  background: #efeff4 50% 16% / cover no-repeat;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.pdfr .hero .ph .ini {
+  font-family: 'Saira Condensed', sans-serif;
+  font-weight: 700;
+  font-size: 72px;
+  color: #c9ccd6;
+}
+.pdfr .hero .id {
+  flex: 1;
+  min-width: 0;
+}
+.pdfr .hero .id h2 {
+  font-family: 'Saira Condensed', sans-serif;
+  font-size: 40px;
+  line-height: 1;
+  font-weight: 700;
+  margin: 0;
+}
+.pdfr .hero .id .role {
+  color: #15803d;
+  font-weight: 700;
+  font-size: 14px;
+  margin-top: 7px;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+.pdfr .hero .id .club {
+  color: #6b6b7b;
+  font-size: 14px;
+  margin-top: 3px;
+}
+.pdfr .rating {
+  display: flex;
+  align-items: baseline;
+  gap: 9px;
+  margin-top: 15px;
+}
+.pdfr .rating .big {
+  font-family: 'Saira Condensed', sans-serif;
+  font-weight: 700;
+  font-size: 44px;
+  color: #15803d;
+  line-height: 0.9;
+  font-variant-numeric: tabular-nums;
+}
+.pdfr .rating .lbl {
+  font-size: 11.5px;
+  color: #6b6b7b;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  font-weight: 700;
+}
+.pdfr .rating .ratepill {
+  font-size: 11.5px;
+  font-weight: 700;
+  color: #0f0f14;
+  background: #f5f5f8;
+  border: 1px solid #e5e5ec;
+  border-radius: 999px;
+  padding: 4px 11px;
+  align-self: center;
+}
+.pdfr .rating .delta {
+  font-size: 12px;
+  font-weight: 800;
+  color: #15803d;
+  align-self: center;
+  margin-left: 4px;
+}
+.pdfr .rating-legend {
+  font-size: 9.5px;
+  color: #8a8a98;
+  margin-top: 7px;
+  line-height: 1.5;
+  max-width: 520px;
+}
+.pdfr .grow {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+.pdfr .grow .g {
+  font-size: 12.5px;
+  font-weight: 700;
+  color: #15803d;
+  background: #ecfdf3;
+  border: 1px solid #c9f0d8;
+  border-radius: 999px;
+  padding: 5px 12px;
+}
+.pdfr .facts {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 8px;
+  margin-top: 14px;
+}
+.pdfr .facts .f {
+  background: #f5f5f8;
+  border-radius: 9px;
+  padding: 7px 10px;
+}
+.pdfr .facts .f .k {
+  font-size: 9px;
+  text-transform: uppercase;
+  letter-spacing: 0.4px;
+  color: #9a9aa8;
+  font-weight: 700;
+}
+.pdfr .facts .f .v {
+  font-weight: 700;
+  font-size: 13px;
+  margin-top: 1px;
+}
+.hg {
+  margin-top: 5px;
+}
+.hg-badge {
+  display: inline-block;
+  padding: 2px 9px;
+  border-radius: 999px;
+  background: #16a34a;
+  color: #fff;
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.2px;
+  line-height: 1.55;
+  white-space: nowrap;
+}
+.pdfr .hg-badge {
+  font-size: 9.5px;
+}
+.pdfr h3 {
+  font-family: 'Saira Condensed', sans-serif;
+  font-size: 17px;
+  text-transform: uppercase;
+  letter-spacing: 0.6px;
+  font-weight: 700;
+  margin: 0 0 11px;
+  padding-bottom: 6px;
+  border-bottom: 1px solid #e5e5ec;
+}
+.pdfr .blk {
+  margin-top: 22px;
+}
+.pdfr .perf {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+  justify-content: center;
+}
+.pdfr .perf img {
+  width: 430px;
+  aspect-ratio: 760/620;
+  max-width: 100%;
+}
+.pdfr .sw {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 24px;
+}
+.pdfr .sw ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+.pdfr .sw li {
+  display: flex;
+  gap: 8px;
+  font-size: 12.5px;
+  margin-bottom: 6px;
+  align-items: flex-start;
+  line-height: 1.4;
+}
+.pdfr .sw li .d {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  margin-top: 5px;
+  flex: none;
+}
+.pdfr .sw.s li .d {
+  background: #16a34a;
+}
+.pdfr .sw.w li .d {
+  background: #dc2626;
+}
+.pdfr .notes {
+  font-size: 12.5px;
+  color: #1f1f28;
+  line-height: 1.6;
+  white-space: pre-wrap;
+}
+.pdfr .tech {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 13px 28px;
+}
+.pdfr .tblk .t {
+  display: flex;
+  justify-content: space-between;
+  font-size: 11.5px;
+  font-weight: 700;
+  margin-bottom: 3px;
+}
+.pdfr .tblk .t .pc {
+  color: #15803d;
+  font-variant-numeric: tabular-nums;
+}
+.pdfr .tblk .track {
+  height: 6px;
+  background: #efeff4;
+  border-radius: 5px;
+  overflow: hidden;
+}
+.pdfr .tblk .fill {
+  height: 100%;
+  background: #16a34a;
+  border-radius: 5px;
+}
+.pdfr .tblk .raws {
+  font-size: 9.5px;
+  color: #6b6b7b;
+  margin-top: 4px;
+  line-height: 1.55;
+}
+.pdfr .tblk .raws b {
+  color: #1f1f28;
+  font-weight: 700;
+}
+.pdfr .ft {
+  margin-top: 26px;
+  border-top: 1px solid #e5e5ec;
+  padding-top: 10px;
+  display: flex;
+  justify-content: space-between;
+  font-size: 10px;
+  color: #9a9aa8;
+  font-weight: 600;
+}
